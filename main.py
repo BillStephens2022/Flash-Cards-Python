@@ -1,6 +1,14 @@
 from tkinter import *
+import pandas
 
 BACKGROUND_COLOR = "#B1DDC6"
+
+data = pandas.read_csv("data/french_words.csv")
+to_learn = data.to_dict()  #converts csv data to a dictionary
+print(to_learn)
+
+def next_card():
+    pass
 
 window = Tk()
 window.title("Flashy")
@@ -15,11 +23,11 @@ canvas.create_text(400, 150, text="Title", font=("Arial", 40, "italic"))
 canvas.create_text(400, 263, text="word", font=("Arial", 60, "bold"))
 
 cross_image = PhotoImage(file="images/wrong.png")
-unknown_button = Button(image=cross_image, highlightthickness=0, highlightbackground=BACKGROUND_COLOR)
+unknown_button = Button(image=cross_image, highlightthickness=0, highlightbackground=BACKGROUND_COLOR, command=next_card)
 unknown_button.grid(row=1, column=0)
 
 check_image = PhotoImage(file="images/right.png")
-known_button = Button(image=check_image, highlightthickness=0, highlightbackground=BACKGROUND_COLOR)
+known_button = Button(image=check_image, highlightthickness=0, highlightbackground=BACKGROUND_COLOR, command=next_card)
 known_button.grid(row=1, column=1)
 
 window.mainloop()
